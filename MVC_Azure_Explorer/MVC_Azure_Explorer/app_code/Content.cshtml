@@ -1,0 +1,7 @@
+﻿@using System.Web.Mvc;
+
+@helper Script(string scriptname, UrlHelper url)
+{
+    
+    <script src="@url.Content(string.Format("~/Scripts/{0}",scriptname))" type="text/javascript"></script>
+}

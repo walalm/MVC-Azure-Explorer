@@ -1,0 +1,151 @@
+﻿@using MVC_Azure_Explorer.Models
+@using MVC_Azure_Explorer.Controllers
+@model List<ManejadorArchivos>
+
+@section scripts{
+
+    @Content.Script("ToolTiper.js", Url)
+    @Content.Script("qq/fileuploader.js", Url)
+    @Content.Script("UtilsFileManager.js", Url)
+    <link href="@Url.Content("~/Scripts/qq/fileuploader.css")" rel="stylesheet" type="text/css" />
+    <!-- NOTIFICACIONES -->
+    @Content.Script("notificaciones/jquery.gritter.min.js", Url)
+    <link href="@Url.Content("~/Scripts/notificaciones/css/jquery.gritter.css")" rel="stylesheet" type="text/css" />
+
+}
+<ol class="breadcrumb">
+    <li><span class="badge alert-success">Current path:</span></li>
+    <li><a href="#">Root Container</a></li>
+    <li><a href="#">@ViewBag.RutaActual</a></li>
+
+</ol>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" onclick="SubirNivel()"><img src="@Url.Content("~/Images/subir.png")" alt="Upper level" title="upper level" /></a>
+            <a class="navbar-brand" href="#" onclick="IrInicio()"><img src="@Url.Content("~/Images/inicio.png")" alt="Home folder" title="Home folder" /></a>
+            <a class="navbar-brand" href="#" onclick="AbrirDialogoArchivo()">
+                <img src="@Url.Content("~/Images/upload.png")" alt="Upload file" title="Upload file" />
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+@using (Html.BeginForm("FileBrowse", "Files", new { field = ViewBag.Field }, FormMethod.Post, new { id = "frmMain", name = "frmMain" }))
+{
+
+    <div class="manejador_archivos_right">
+        <table class="table" style="border: 0; width: 99%">
+            <tr>
+                <th scope="col">
+                </th>
+                <th scope="col">
+                    Name
+                </th>
+                <th scope="col">
+                    Type
+                </th>
+                <th scope="col">
+                    Size
+                </th>
+                <th scope="col">
+                    Date
+                </th>
+                <th scope="col">
+                    Action
+                </th>
+            </tr>
+            @foreach (ManejadorArchivos man in Model)
+            {
+
+                <tr>
+                    <td>
+                        @if (Utils.ExisteImagen(man.Icono))
+                        {
+                            <img src="@Url.Content(man.Icono)" alt="Type" />
+                        }
+                        else
+                        {
+
+                            <img src="@Url.Content("~/Images/extensiones/16/uknown.png")" alt="Type" />
+                        }
+                    </td>
+                    <td>
+                        @if (man.Tipo == TipoArchivo.Folder)
+                        {
+                            <a href="#" onclick="AbrirCarpeta('@man.RutaCompleta')">@man.Nombre</a>
+                        }
+                        else
+                        {
+                            <div>@Utils.AcortarNombre(man.Nombre, 15, 15)</div>
+                        }
+                    </td>
+                    <td>
+                        @man.Tipo.ToString()
+                    </td>
+                    <td>
+                        @(string.IsNullOrEmpty(man.Tamano) ? "-" : man.Tamano)
+                    </td>
+                    <td>
+                        @man.Fecha.ToString("dd/MM/yyyy hh:mm tt")
+                    </td>
+                    <td>
+                        @if (man.Tipo == TipoArchivo.File)
+                        {
+                            if (!man.Protegido)
+                            {
+                                <a href="@man.RutaCompleta" target="_blank">
+                                    <img src="@Url.Content("~/Images/accept.png")" alt="Open" title="Open" />
+                                </a>
+                            }
+                        }
+                        @if (!man.Protegido)
+                        {
+
+                            <a href="#">
+                                <img src="@Url.Content("~/Images/eliminar.png")" alt="Delete" title="Delete" onclick="EliminarArchivo('@man.RutaCompleta')" />
+                            </a>
+                        }
+                    </td>
+                </tr>
+
+            }
+        </table>
+    </div>
+    <input type="hidden" value="@FilesController.RutaRaiz" name="RutaRaiz" id="RutaRaiz" />
+    <input type="hidden" value="@ViewBag.TieneSuperior" name="TieneSuperior" id="TieneSuperior" />
+    <input type="hidden" value="@ViewBag.RutaActual" name="RutaActual" id="RutaActual" />
+    <input type="hidden" value="@ViewBag.RutaSuperior" name="RutaSuperior" id="RutaSuperior" />
+    <input type="hidden" value="" name="RutaSolicitada" id="RutaSolicitada" />
+    <input type="hidden" value="" name="ArchivoParaEliminar" id="ArchivoParaEliminar" />
+
+}
+
+<div class="modal fade" tabindex="-1" id="modalUploader" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Upload File</h4>
+            </div>
+            <div class="modal-body">
+                <p>Choose the file you want to upload, as soon as you select it, the file will start to upload and will let you know when the process is finished.</p>
+                <div style="padding:10px" id="areaSubir"></div>
+                <div id="file-uploader-demo1">
+                    <noscript>
+                        <p>Please enable JavaScript to use file uploader.</p>
+                        <!-- or put a simple form for upload here -->
+                    </noscript>
+                </div>
+                <div style="width:99%; overflow:auto">
+                    <ul id="dvxArchivos"></ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F5F2D561-B0A4-4782-B262-6934C78D5B8B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MVC_Azure_Explorer</RootNamespace>
+    <AssemblyName>MVC_Azure_Explorer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.7.0.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FilesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BlobHandler.cs" />
+    <Compile Include="Models\ManejadorArchivos.cs" />
+    <Compile Include="Models\MensajeView.cs" />
+    <Compile Include="Models\Utils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\accept.png" />
+    <Content Include="Images\eliminar.png" />
+    <Content Include="Images\extensiones\16\3gp.png" />
+    <Content Include="Images\extensiones\16\7z.png" />
+    <Content Include="Images\extensiones\16\ace.png" />
+    <Content Include="Images\extensiones\16\ai.png" />
+    <Content Include="Images\extensiones\16\aif.png" />
+    <Content Include="Images\extensiones\16\aiff.png" />
+    <Content Include="Images\extensiones\16\amr.png" />
+    <Content Include="Images\extensiones\16\asf.png" />
+    <Content Include="Images\extensiones\16\asx.png" />
+    <Content Include="Images\extensiones\16\bat.png" />
+    <Content Include="Images\extensiones\16\bin.png" />
+    <Content Include="Images\extensiones\16\bmp.png" />
+    <Content Include="Images\extensiones\16\bup.png" />
+    <Content Include="Images\extensiones\16\cab.png" />
+    <Content Include="Images\extensiones\16\cbr.png" />
+    <Content Include="Images\extensiones\16\cda.png" />
+    <Content Include="Images\extensiones\16\cdl.png" />
+    <Content Include="Images\extensiones\16\cdr.png" />
+    <Content Include="Images\extensiones\16\chm.png" />
+    <Content Include="Images\extensiones\16\dat.png" />
+    <Content Include="Images\extensiones\16\divx.png" />
+    <Content Include="Images\extensiones\16\dll.png" />
+    <Content Include="Images\extensiones\16\dmg.png" />
+    <Content Include="Images\extensiones\16\doc.png" />
+    <Content Include="Images\extensiones\16\dss.png" />
+    <Content Include="Images\extensiones\16\dvf.png" />
+    <Content Include="Images\extensiones\16\dwg.png" />
+    <Content Include="Images\extensiones\16\eml.png" />
+    <Content Include="Images\extensiones\16\eps.png" />
+    <Content Include="Images\extensiones\16\exe.png" />
+    <Content Include="Images\extensiones\16\fla.png" />
+    <Content Include="Images\extensiones\16\flv.png" />
+    <Content Include="Images\extensiones\16\folder.png" />
+    <Content Include="Images\extensiones\16\gif.png" />
+    <Content Include="Images\extensiones\16\gz.png" />
+    <Content Include="Images\extensiones\16\hqx.png" />
+    <Content Include="Images\extensiones\16\htm.png" />
+    <Content Include="Images\extensiones\16\html.png" />
+    <Content Include="Images\extensiones\16\ifo.png" />
+    <Content Include="Images\extensiones\16\indd.png" />
+    <Content Include="Images\extensiones\16\iso.png" />
+    <Content Include="Images\extensiones\16\jar.png" />
+    <Content Include="Images\extensiones\16\jpeg.png" />
+    <Content Include="Images\extensiones\16\jpg.png" />
+    <Content Include="Images\extensiones\16\lnk.png" />
+    <Content Include="Images\extensiones\16\log.png" />
+    <Content Include="Images\extensiones\16\m4a.png" />
+    <Content Include="Images\extensiones\16\m4b.png" />
+    <Content Include="Images\extensiones\16\m4p.png" />
+    <Content Include="Images\extensiones\16\m4v.png" />
+    <Content Include="Images\extensiones\16\mcd.png" />
+    <Content Include="Images\extensiones\16\mdb.png" />
+    <Content Include="Images\extensiones\16\mid.png" />
+    <Content Include="Images\extensiones\16\mov.png" />
+    <Content Include="Images\extensiones\16\mp2.png" />
+    <Content Include="Images\extensiones\16\mp4.png" />
+    <Content Include="Images\extensiones\16\mpeg.png" />
+    <Content Include="Images\extensiones\16\mpg.png" />
+    <Content Include="Images\extensiones\16\msi.png" />
+    <Content Include="Images\extensiones\16\mswmm.png" />
+    <Content Include="Images\extensiones\16\ogg.png" />
+    <Content Include="Images\extensiones\16\pdf.png" />
+    <Content Include="Images\extensiones\16\png.png" />
+    <Content Include="Images\extensiones\16\pps.png" />
+    <Content Include="Images\extensiones\16\ps.png" />
+    <Content Include="Images\extensiones\16\psd.png" />
+    <Content Include="Images\extensiones\16\pst.png" />
+    <Content Include="Images\extensiones\16\ptb.png" />
+    <Content Include="Images\extensiones\16\pub.png" />
+    <Content Include="Images\extensiones\16\qbb.png" />
+    <Content Include="Images\extensiones\16\qbw.png" />
+    <Content Include="Images\extensiones\16\qxd.png" />
+    <Content Include="Images\extensiones\16\ram.png" />
+    <Content Include="Images\extensiones\16\rar.png" />
+    <Content Include="Images\extensiones\16\rm.png" />
+    <Content Include="Images\extensiones\16\rmvb.png" />
+    <Content Include="Images\extensiones\16\rtf.png" />
+    <Content Include="Images\extensiones\16\sea.png" />
+    <Content Include="Images\extensiones\16\ses.png" />
+    <Content Include="Images\extensiones\16\sit.png" />
+    <Content Include="Images\extensiones\16\sitx.png" />
+    <Content Include="Images\extensiones\16\ss.png" />
+    <Content Include="Images\extensiones\16\swf.png" />
+    <Content Include="Images\extensiones\16\tgz.png" />
+    <Content Include="Images\extensiones\16\thm.png" />
+    <Content Include="Images\extensiones\16\tif.png" />
+    <Content Include="Images\extensiones\16\tmp.png" />
+    <Content Include="Images\extensiones\16\torrent.png" />
+    <Content Include="Images\extensiones\16\ttf.png" />
+    <Content Include="Images\extensiones\16\txt.png" />
+    <Content Include="Images\extensiones\16\uknown.png" />
+    <Content Include="Images\extensiones\16\vcd.png" />
+    <Content Include="Images\extensiones\16\vob.png" />
+    <Content Include="Images\extensiones\16\wav.png" />
+    <Content Include="Images\extensiones\16\wma.png" />
+    <Content Include="Images\extensiones\16\wmv.png" />
+    <Content Include="Images\extensiones\16\wps.png" />
+    <Content Include="Images\extensiones\16\xls.png" />
+    <Content Include="Images\extensiones\16\xpi.png" />
+    <Content Include="Images\extensiones\16\zip.png" />
+    <Content Include="Images\extensiones\32\3gp.png" />
+    <Content Include="Images\extensiones\32\7z.png" />
+    <Content Include="Images\extensiones\32\ace.png" />
+    <Content Include="Images\extensiones\32\ai.png" />
+    <Content Include="Images\extensiones\32\aif.png" />
+    <Content Include="Images\extensiones\32\aiff.png" />
+    <Content Include="Images\extensiones\32\amr.png" />
+    <Content Include="Images\extensiones\32\asf.png" />
+    <Content Include="Images\extensiones\32\asx.png" />
+    <Content Include="Images\extensiones\32\bat.png" />
+    <Content Include="Images\extensiones\32\bin.png" />
+    <Content Include="Images\extensiones\32\bmp.png" />
+    <Content Include="Images\extensiones\32\bup.png" />
+    <Content Include="Images\extensiones\32\cab.png" />
+    <Content Include="Images\extensiones\32\cbr.png" />
+    <Content Include="Images\extensiones\32\cda.png" />
+    <Content Include="Images\extensiones\32\cdl.png" />
+    <Content Include="Images\extensiones\32\cdr.png" />
+    <Content Include="Images\extensiones\32\chm.png" />
+    <Content Include="Images\extensiones\32\dat.png" />
+    <Content Include="Images\extensiones\32\divx.png" />
+    <Content Include="Images\extensiones\32\dll.png" />
+    <Content Include="Images\extensiones\32\dmg.png" />
+    <Content Include="Images\extensiones\32\doc.png" />
+    <Content Include="Images\extensiones\32\dss.png" />
+    <Content Include="Images\extensiones\32\dvf.png" />
+    <Content Include="Images\extensiones\32\dwg.png" />
+    <Content Include="Images\extensiones\32\eml.png" />
+    <Content Include="Images\extensiones\32\eps.png" />
+    <Content Include="Images\extensiones\32\exe.png" />
+    <Content Include="Images\extensiones\32\fla.png" />
+    <Content Include="Images\extensiones\32\flv.png" />
+    <Content Include="Images\extensiones\32\folder.png" />
+    <Content Include="Images\extensiones\32\gif.png" />
+    <Content Include="Images\extensiones\32\gz.png" />
+    <Content Include="Images\extensiones\32\hqx.png" />
+    <Content Include="Images\extensiones\32\htm.png" />
+    <Content Include="Images\extensiones\32\html.png" />
+    <Content Include="Images\extensiones\32\ifo.png" />
+    <Content Include="Images\extensiones\32\indd.png" />
+    <Content Include="Images\extensiones\32\iso.png" />
+    <Content Include="Images\extensiones\32\jar.png" />
+    <Content Include="Images\extensiones\32\jpeg.png" />
+    <Content Include="Images\extensiones\32\jpg.png" />
+    <Content Include="Images\extensiones\32\lnk.png" />
+    <Content Include="Images\extensiones\32\log.png" />
+    <Content Include="Images\extensiones\32\m4a.png" />
+    <Content Include="Images\extensiones\32\m4b.png" />
+    <Content Include="Images\extensiones\32\m4p.png" />
+    <Content Include="Images\extensiones\32\m4v.png" />
+    <Content Include="Images\extensiones\32\mcd.png" />
+    <Content Include="Images\extensiones\32\mdb.png" />
+    <Content Include="Images\extensiones\32\mid.png" />
+    <Content Include="Images\extensiones\32\mov.png" />
+    <Content Include="Images\extensiones\32\mp2.png" />
+    <Content Include="Images\extensiones\32\mp4.png" />
+    <Content Include="Images\extensiones\32\mpeg.png" />
+    <Content Include="Images\extensiones\32\mpg.png" />
+    <Content Include="Images\extensiones\32\msi.png" />
+    <Content Include="Images\extensiones\32\mswmm.png" />
+    <Content Include="Images\extensiones\32\ogg.png" />
+    <Content Include="Images\extensiones\32\pdf.png" />
+    <Content Include="Images\extensiones\32\png.png" />
+    <Content Include="Images\extensiones\32\pps.png" />
+    <Content Include="Images\extensiones\32\ps.png" />
+    <Content Include="Images\extensiones\32\psd.png" />
+    <Content Include="Images\extensiones\32\pst.png" />
+    <Content Include="Images\extensiones\32\ptb.png" />
+    <Content Include="Images\extensiones\32\pub.png" />
+    <Content Include="Images\extensiones\32\qbb.png" />
+    <Content Include="Images\extensiones\32\qbw.png" />
+    <Content Include="Images\extensiones\32\qxd.png" />
+    <Content Include="Images\extensiones\32\ram.png" />
+    <Content Include="Images\extensiones\32\rar.png" />
+    <Content Include="Images\extensiones\32\rm.png" />
+    <Content Include="Images\extensiones\32\rmvb.png" />
+    <Content Include="Images\extensiones\32\rtf.png" />
+    <Content Include="Images\extensiones\32\sea.png" />
+    <Content Include="Images\extensiones\32\ses.png" />
+    <Content Include="Images\extensiones\32\sit.png" />
+    <Content Include="Images\extensiones\32\sitx.png" />
+    <Content Include="Images\extensiones\32\ss.png" />
+    <Content Include="Images\extensiones\32\swf.png" />
+    <Content Include="Images\extensiones\32\tgz.png" />
+    <Content Include="Images\extensiones\32\thm.png" />
+    <Content Include="Images\extensiones\32\tif.png" />
+    <Content Include="Images\extensiones\32\tmp.png" />
+    <Content Include="Images\extensiones\32\torrent.png" />
+    <Content Include="Images\extensiones\32\ttf.png" />
+    <Content Include="Images\extensiones\32\txt.png" />
+    <Content Include="Images\extensiones\32\vcd.png" />
+    <Content Include="Images\extensiones\32\vob.png" />
+    <Content Include="Images\extensiones\32\wav.png" />
+    <Content Include="Images\extensiones\32\wma.png" />
+    <Content Include="Images\extensiones\32\wmv.png" />
+    <Content Include="Images\extensiones\32\wps.png" />
+    <Content Include="Images\extensiones\32\xls.png" />
+    <Content Include="Images\extensiones\32\xpi.png" />
+    <Content Include="Images\extensiones\32\zip.png" />
+    <Content Include="Images\inicio.png" />
+    <Content Include="Images\subir.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="app_code\Content.cshtml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.17.min.js" />
+    <Content Include="Scripts\jquery.ui.selectmenu.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\notificaciones\css\jquery.gritter.css" />
+    <Content Include="Scripts\notificaciones\images\gritter-light.png" />
+    <Content Include="Scripts\notificaciones\images\gritter-long.png" />
+    <Content Include="Scripts\notificaciones\images\gritter.png" />
+    <Content Include="Scripts\notificaciones\images\ie-spacer.gif" />
+    <Content Include="Scripts\notificaciones\images\trees.jpg" />
+    <Content Include="Scripts\notificaciones\jquery.gritter.js" />
+    <Content Include="Scripts\notificaciones\jquery.gritter.min.js" />
+    <Content Include="Scripts\qq\fileuploader.css" />
+    <Content Include="Scripts\qq\fileuploader.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ToolTiper.js" />
+    <Content Include="Scripts\UtilsFileManager.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Files\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57943</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57943/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
